@@ -38,27 +38,6 @@ function Cluster() {
   };
 
   this.remove = id => {
-    /**
-     * Acceptance:
-     * - Never remove node if it's only connecting between two hotspot
-     *
-     * Todo:
-     * - Check how many connection on target node
-     * - if only one, we can delete it directly
-     * - if more than one:
-     * - we need to check if the target node
-     *   is a single connector between the neighbour
-     * - if it a single connector, return false / cannot to removed
-     * - else we can remove it safely
-     *
-     * Algorithm to find path between neighbour of target node
-     * EXAMPLE: a-b-c-d-e
-     * if we wan to remove node c,
-     * we need to check path from node b and d
-     *
-     * Possible algorithm to use: A* / BFS /DFS
-     */
-
     let isAllowed = false;
     const nodeTarget = this.get(id);
     if (!nodeTarget) {
@@ -377,9 +356,6 @@ hexaland.add({ name: "i", border: 0 }, "h");
 hexaland.add({ name: "j", border: 2 }, "i");
 hexaland.add({ name: "k", border: 3 }, "j");
 hexaland.remove("c");
-hexaland.remove("d");
-hexaland.remove("i");
-hexaland.remove("b");
 
 const c3e = performance.now();
 console.log("case 3 running on ms:", (c3e - c3) / 1000);
